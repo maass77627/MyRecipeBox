@@ -1,8 +1,24 @@
 require_relative 'config/environment'
-require 'sinatra/activerecord/rake'
+# require 'sinatra/activerecord/rake'
 
 desc 'rack console'
-task :console do
+task :console => :environment do
   ActiveRecord::Base.logger = Logger.new(STDOUT)
   Pry.start
+end
+
+task :environment do
+  require_relative './config/environment'
+end 
+
+namespace :db do
+  desc 'migrate changes to your database'
+  task :migrate => :environment do
+    Recipe.create_table
+  end
+
+task :seed do
+  require_relative './db/seeds.rb'
+end 
+
 end

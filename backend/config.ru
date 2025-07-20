@@ -1,5 +1,8 @@
+require 'shotgun'
+require 'rack'
 require 'rack/cors'
 require_relative "./config/environment.rb"
+require_relative "./app/application.rb"
 
 use Rack::Cors do
 
