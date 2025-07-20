@@ -10,11 +10,11 @@ def call(env)
    if req.path.match(/recipes/) && req.get?
      resp.write Recipe.all.to_json
 
-  # elsif req.path.match(/foods/) && req.post?
-  #    data = JSON.parse req.body.read
-  #    food = Food.create(name: data["name"], description: data["description"], category: data["category"], calories: data["calories"], image: data["image"])
+  elsif req.path.match(/recipes/) && req.post?
+    data = JSON.parse req.body.read
+   recipe = Recipe.create(name: data["name"], ingredients: data["ingredients"], directions: data["directions"], image: data["image"])
   
-  #    resp.write(food.to_json)
+   resp.write(recipe.to_json)
     
   # elsif req.delete?
   #   puts "recieved request"
