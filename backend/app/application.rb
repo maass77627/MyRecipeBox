@@ -15,6 +15,9 @@ def call(env)
    recipe = Recipe.create(name: data["name"], ingredients: data["ingredients"], directions: data["directions"], image: data["image"])
   
    resp.write(recipe.to_json)
+
+  elsif req.path.match(/categories/) && req.get?
+    resp.write Category.all.to_json
     
   # elsif req.delete?
   #   puts "recieved request"

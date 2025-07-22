@@ -1,0 +1,1 @@
+Recipe.create(name: "Mexican CornBread", ingredients: "1 1/2 cups cornmeal, 1/2 Tsp soda, 1 tbspn flour, 1 1/4 cup milk, 2 eggs, 1/3 cup oil, 1 can of creamed corn, 3 Tbsp jalapeno, 1/2 cups cheddar cheese, 1 lb ground meat", directions: "mix ingredients, pour into greased 9/13 pan, bake 45 min, let stand", image: 'mexicancornbread.jpg')
