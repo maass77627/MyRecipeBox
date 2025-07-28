@@ -19,10 +19,10 @@ def call(env)
   elsif req.path.match(/categories/) && req.get?
     resp.write Category.all.to_json
     
-  # elsif req.delete?
-  #   puts "recieved request"
-  #   id = req.path.split("/foods/").last
-  #   Food.find(id).delete
+   elsif req.delete?
+    puts "recieved request"
+    id = req.path.split("/recipes/").last
+    Recipe.find(id).delete
   else
    resp.write "Path Not Found"
   end
