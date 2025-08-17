@@ -12,7 +12,7 @@ def call(env)
     newrecipes = []
     Recipe.all.each do |recipe|
       recipe.adjusted_title
-      recipe.adjusted_ingredients_text
+      # recipe.adjusted_ingredients_text
       # recipe.adjusted_directions_text
       newrecipes << recipe
     end
