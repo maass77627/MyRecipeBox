@@ -25,11 +25,5 @@ end
 #     self.save
 # end
 
-# def self.find_recipes_by_category
-#     Recipe.where("release_date > 2002")
-# end
-
-
-
 
 end
