@@ -1,12 +1,72 @@
-Recipe.create!(name: "Mexican CornBread", ingredients: "1 1/2 cups cornmeal, 1/2 Tsp soda, 1 tbspn flour, 1 1/4 cup milk, 2 eggs, 1/3 cup oil, 1 can of creamed corn, 3 Tbsp jalapeno, 1/2 cups cheddar cheese, 1 lb ground meat", directions: "mix ingredients, pour into greased 9/13 pan, bake 45 min, let stand", image: 'mexicancornbread.jpg', category_id: 26)
-Recipe.create!(name: "Chicken Noodle", ingredients: "4 boneless Chicken Breasts, olive oil, spinach, tomatoe, salt and pepper", directions: "Drizzle ingredients over chicken bake at 450 degrees for one hour", image: 'chickennoodle.jpg', category_id: 21)
-Recipe.create!(name: "Summer Salad", ingredients: "lettuce, bell pepper, celery, tomatoe", directions: "mix ingredients in a bowl, serve chilled", image: 'salad.webp', category_id: 22)
-Recipe.create(name: "Chicken Spinach Bake", ingredients: "4 boneless Chicken Breasts, olive oil, spinach, tomatoe, salt and pepper", directions: "bake at 450 for 1 hour", image: 'chickenspin.webp', category_id: 23)
-Recipe.create(name: "veggie salad", ingredients: "lettuce, tomatoe, carrots", directions: "mix ingredientske in bowl and serve", image: 'saladtwo.webp', category_id: 22)
-Category.create(name: "appetizer")
-Category.create(name: "dessert")
-Category.create(name: "soup")
-Category.create(name: "salad")
-Category.create(name: "entree")
-Category.create(name: "breads")
-Category.create(name: "this and that")
+
+
+
+puts "Clearing old data..."
+RecipeIngredient.destroy_all
+Ingredient.destroy_all
+Recipe.destroy_all
+Category.destroy_all
+
+puts "Creating categories..."
+categories = {
+  "Entree" => Category.create(name: "Entree"),
+  "Dessert" => Category.create(name: "Dessert"),
+  "Soup" => Category.create(name: "Soup"),
+  "Salad" => Category.create(name: "Salad")
+}
+
+puts "Creating ingredients..."
+ingredients = [
+  "Chicken",
+  "Beef",
+  "Lettuce",
+  "Tomato",
+  "Onion",
+  "Garlic",
+  "Butter",
+  "Sugar",
+  "Flour",
+  "Eggs",
+  "Chocolate"
+].map { |name| Ingredient.create(name: name) }
+
+puts "Creating recipes..."
+r1 = Recipe.create(
+  name: "Chocolate Cake",
+  directions: "Mix ingredients and bake at 350°F for 30 minutes.",
+  category: categories["Dessert"],
+  image: "chocolate_cake.jpg"
+)
+
+r2 = Recipe.create(
+  name: "Grilled Chicken Salad",
+  directions: "Grill chicken, toss with lettuce and dressing.",
+  category: categories["Salad"],
+  image: "https://example.com/chicken_salad.jpg"
+)
+
+r3 = Recipe.create(
+  name: "Beef Stew",
+  directions: "Simmer beef and vegetables for 2 hours.",
+  category: categories["Soup"],
+  image: "https://example.com/beef_stew.jpg"
+)
+
+puts "Linking recipes and ingredients..."
+
+r1.ingredients << Ingredient.find_by(name: "Flour")
+r1.ingredients << Ingredient.find_by(name: "Eggs")
+r1.ingredients << Ingredient.find_by(name: "Chocolate")
+r1.ingredients << Ingredient.find_by(name: "Sugar")
+
+
+r2.ingredients << Ingredient.find_by(name: "Chicken")
+r2.ingredients << Ingredient.find_by(name: "Lettuce")
+r2.ingredients << Ingredient.find_by(name: "Tomato")
+
+
+r3.ingredients << Ingredient.find_by(name: "Beef")
+r3.ingredients << Ingredient.find_by(name: "Onion")
+r3.ingredients << Ingredient.find_by(name: "Garlic")
+
+puts "✅ Done seeding!"

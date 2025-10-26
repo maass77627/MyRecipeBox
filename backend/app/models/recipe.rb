@@ -1,19 +1,48 @@
 require 'pry'
 
+# class Recipe < ActiveRecord::Base
+
+# belongs_to :category
+
+
+
+
+# def adjusted_title
+#      capitalized_words = self.name.split.map(&:capitalize).join(' ')
+#      self.name = capitalized_words
+#      self.save
+# end
+
+
+
+
+# end
+
 class Recipe < ActiveRecord::Base
+     belongs_to :category
 
-belongs_to :category
+     belongs_to :category
 
-
-
-
-def adjusted_title
-     capitalized_words = self.name.split.map(&:capitalize).join(' ')
-     self.name = capitalized_words
-     self.save
-end
-
-
-
-
-end
+  has_many :recipe_ingredients, dependent: :destroy
+  has_many :ingredients, through: :recipe_ingredients
+   
+     validates :name, presence: true
+    
+     validates :directions, presence: true
+   
+    
+     def adjusted_title
+       "#{name.titleize} (#{category&.name || 'Uncategorized'})"
+     end
+   
+    
+     def as_json(options = {})
+       super(
+         only: [:id, :name, :ingredients, :directions, :image, :category_id],
+         methods: [:adjusted_title],
+         include: {
+           category: { only: [:id, :name] }
+         }
+       )
+     end
+   end

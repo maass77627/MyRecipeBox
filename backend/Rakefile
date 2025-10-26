@@ -1,24 +1,54 @@
-require_relative 'config/environment'
-# require 'sinatra/activerecord/rake'
+# require_relative 'config/environment'
+#  require 'sinatra/activerecord/rake'
 
-desc 'rack console'
+#  desc 'Open an interactive console with app context'
+# task :console => :environment do
+#   require 'pry'
+#   Pry.start
+# end
+# desc 'rack console'
+# task :console => :environment do
+#   ActiveRecord::Base.logger = Logger.new(STDOUT)
+#   Pry.start
+# end
+
+# task :environment do
+#   require_relative './config/environment'
+# end 
+
+# namespace :db do
+#   desc 'migrate changes to your database'
+#   task :migrate => :environment do
+#     Recipe.create_table
+#   end
+
+# task :seed do
+#   require_relative './db/seeds.rb'
+# end 
+
+#end
+
+
+require_relative 'config/environment'
+require 'sinatra/activerecord/rake'
+require 'pry'
+
+# Define a simple environment task
+task :environment do
+  require_relative './config/environment'
+end
+
+# Define a console task
+desc 'Open an interactive console with app context'
 task :console => :environment do
   ActiveRecord::Base.logger = Logger.new(STDOUT)
   Pry.start
 end
 
-task :environment do
-  require_relative './config/environment'
-end 
-
+# Define a seed task
 namespace :db do
-  desc 'migrate changes to your database'
-  task :migrate => :environment do
-    Recipe.create_table
+  desc 'Seed the database'
+  task :seed => :environment do
+    require_relative './db/seeds.rb'
   end
-
-task :seed do
-  require_relative './db/seeds.rb'
-end 
-
 end

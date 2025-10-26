@@ -27,8 +27,11 @@ GEM
     rack (1.6.13)
     rack-cors (1.0.6)
       rack (>= 1.6.0)
+    rack-protection (1.5.5)
+      rack
     rack-test (2.2.0)
       rack (>= 1.3)
+    rake (13.3.0)
     require_all (3.0.0)
     rspec (3.13.1)
       rspec-core (~> 3.13.0)
@@ -45,9 +48,17 @@ GEM
     rspec-support (3.13.4)
     shotgun (0.9)
       rack (>= 1.0)
+    sinatra (1.4.8)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    sinatra-activerecord (2.0.28)
+      activerecord (>= 4.1)
+      sinatra (>= 1.0)
     sqlite3 (1.7.3)
       mini_portile2 (~> 2.8.0)
     thread_safe (0.3.6)
+    tilt (2.6.1)
     tzinfo (1.2.11)
       thread_safe (~> 0.1)
 
@@ -60,9 +71,12 @@ DEPENDENCIES
   rack (= 1.6.13)
   rack-cors (~> 1.0.0)
   rack-test
+  rake
   require_all
   rspec
   shotgun (= 0.9.0)
+  sinatra
+  sinatra-activerecord
   sqlite3
 
 BUNDLED WITH
