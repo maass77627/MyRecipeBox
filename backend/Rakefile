@@ -33,19 +33,19 @@ require_relative 'config/environment'
 require 'sinatra/activerecord/rake'
 require 'pry'
 
-# Define a simple environment task
+
 task :environment do
   require_relative './config/environment'
 end
 
-# Define a console task
+
 desc 'Open an interactive console with app context'
 task :console => :environment do
   ActiveRecord::Base.logger = Logger.new(STDOUT)
   Pry.start
 end
 
-# Define a seed task
+
 namespace :db do
   desc 'Seed the database'
   task :seed => :environment do
